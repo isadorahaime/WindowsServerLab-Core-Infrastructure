@@ -1,61 +1,69 @@
-🖥️ Implementação de Infraestrutura Híbrida e Segura
+# 🖥️ Implementação de Infraestrutura Híbrida e Segura
 
-🎯 Objetivo do Projeto
-"Simular um ambiente de médio porte para demonstrar habilidades em administração de servidores, automação com PowerShell e aplicação do princípio de privilégio mínimo (Least Privilege)."
+### 🎯 Objetivo do Projeto
+***"Simular um ambiente de médio porte para demonstrar habilidades em administração de servidores, automação com PowerShell e aplicação do princípio de privilégio mínimo (Least Privilege)."***
 
-🛠️ Tecnologias Utilizadas
+---
 
-Virtualização: Hyper-V.
+### 🛠️ Tecnologias Utilizadas
 
-SO: Windows Server 2022 e Windows 10.
+* Virtualização: Hyper-V / VMware vSphere.
 
-Ferramentas: Active Directory, Group Policy Management, PowerShell.
+* Sistemas: Windows Server 2022 & Windows 10/11.
 
-🏗️ Implementação Passo a Passo
+* Serviços: AD DS, DNS, DHCP, Group Policy (GPO).
 
-Estrutura de OUs: Criei uma hierarquia baseada em departamentos (RH, Financeiro, TI) para facilitar a aplicação de políticas.
+* Automação: PowerShell.
 
-Delegação de Controle (O Diferencial): Em vez de usar a conta de Administrador para tudo, configurei uma conta de Operador.
+---
 
-Desafio: O operador precisava resetar senhas sem ter acesso total ao servidor.
+### 🏗️ Implementação Passo a Passo
 
-Solução: Deleguei a permissão específica no AD e utilizei o módulo RSAT via PowerShell para contornar limitações de interface.
+* Estrutura de OUs: Criei uma hierarquia baseada em departamentos (RH, Financeiro, TI) para facilitar a aplicação de políticas.
 
-GPOs Aplicadas:
+* Delegação de Controle (O Diferencial): Em vez de usar a conta de Administrador para tudo, configurei uma conta de Operador.
 
-Mapeamento automático de drives de rede baseado no grupo do usuário.
+* Desafio: O operador precisava resetar senhas sem ter acesso total ao servidor.
 
-Restrição de acesso ao CMD e Painel de Controle para usuários finais.
+* Solução: Deleguei a permissão específica no AD e utilizei o módulo RSAT via PowerShell para contornar limitações de interface.
 
+***GPOs Aplicadas:***
 
-🗺️ Arquitetura do Ambiente
+* Mapeamento automático de drives de rede baseado no grupo do usuário.
+
+* Restrição de acesso ao CMD e Painel de Controle para usuários finais.
+
+---
+
+### 🗺️ Arquitetura do Ambiente
+
+***A topologia abaixo descreve a segmentação lógica de Unidades Organizacionais (OUs) e a conectividade entre o Controlador de Domínio e as Estações de Trabalho.***
 
 ![Arquitetura do LAB](docs/Diagrama.png)
 
+---
 
-💻 Scripts em Destaque
+### 💻 Scripts em Destaque
 
-Exemplo de comando usado para delegar o reset de senha
+| Script | Função | Caminho |
+| :--- | :--- | :--- |
+| **Password Reset** | Automatiza o reset de senha com expiração forçada. | [`/scripts/passwordChange`](scripts/passwordChange) |
+| **Bulk Import** | Criação de usuários em massa via arquivo CSV. | [`/scripts/CreateUsersFromCSV.ps1`](scripts/CreateUsersCSV.ps1) |
+| **Group Report** | Lista todos os membros do grupo "Domain Admins".. | [`/scripts/Get-PrivilagedUsers.ps1`](scripts/Get-PrivilagedUsers.ps1) |
 
-Set-ADAccountPassword "Usuario" -Reset -NewPassword $pass
-Você pode encontrar o código completo [aqui](scripts/passwordChange).
+---
 
-Exemplo de comando usado para automação de criação de usuários
+### 🔧 Troubleshooting: O Caso do RSAT
 
-Importa usuários de um CSV e os cria no AD
-$users = Import-Csv "C:\scripts\usuarios_novos.csv"
+### Durante a configuração das ferramentas administrativas em uma estação de trabalho, encontrei o erro de sistema PathNotFound ao tentar instalar o módulo do Active Directory via interface.
 
-foreach ($user in $users) {
-    New-ADUser -Name $user.Name -SamAccountName $user.Login `
-    -UserPrincipalName "$($user.Login)@thm.local" `
-    -Path "OU=$($user.Department),OU=THM,DC=thm,DC=local" `
-    -AccountPassword (ConvertTo-SecureString "SenhaPadrao123!" -AsPlainText -Force) `
-    -Enabled $true
-}
+***Solução Aplicada:***
+Utilizei o PowerShell como Administrador para forçar a instalação do recurso através do comando:
 
-Você pode encontrar o código completo [aqui](scripts/CreateUsersFromCSV.ps1).
-
-Script de Auditoria de Grupos (Segurança)
+```powershell
+Get-WindowsCapability -Online -Name "Rsat.ActiveDirectory*" | Add-WindowsCapability -Onlin
+```
+### Este desafio demonstrou a importância do domínio da linha de comando quando a interface gráfica (GUI) do Windows falha em ambientes de rede restritos.
 
 
 
