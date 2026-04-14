@@ -31,3 +31,10 @@ Restrição de acesso ao CMD e Painel de Controle para usuários finais.
 🗺️ Arquitetura do Ambiente
 
 ![Arquitetura do LAB](docs/Diagrama.png)
+
+💻 Scripts em Destaque
+
+Exemplo de comando usado para delegar o reset de senha
+Set-ADAccountPassword "Usuario" -Reset -NewPassword $pass
+
+Você pode encontrar o código completo [aqui](scripts/passwordChange).
