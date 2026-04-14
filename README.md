@@ -48,31 +48,6 @@
 
 ---
 
-### 📚 Principais Aprendizados
-
-### Infraestrutura de rede:
-
-* Diferença prática entre rede interna e externa no Hyper-V
-* Como DHCP e DNS se integram no ambiente de domínio
-
-### Controle de acesso:
-
-* NTFS vs permissões de compartilhamento — como funcionam juntas
-* Por que Workgroup é importante entender antes do domínio
-
-### Active Directory:
-
-* Estrutura lógica do AD: Forest > Domain > OU > Objeto
-* Como OUs permitem delegar controle e aplicar GPOs de forma granular
-
-### GPOs na prática:
-
-* Precedência de GPO: Local > Site > Domain > OU
-* Como gpupdate /force e gpresult ajudam no troubleshooting
-* Diferença entre Computer Configuration e User Configuration
-
----
-
 ### 🗺️ Arquitetura do Ambiente
 
 ***A topologia abaixo descreve a segmentação lógica de Unidades Organizacionais (OUs) e a conectividade entre o Controlador de Domínio e as Estações de Trabalho.***
@@ -101,7 +76,7 @@
 Utilizei o PowerShell como Administrador para forçar a instalação do recurso através do comando:
 
 ```powershell
-Get-WindowsCapability -Online -Name "Rsat.ActiveDirectory*" | Add-WindowsCapability -Onlin
+Get-WindowsCapability -Online -Name "Rsat.ActiveDirectory*" | Add-WindowsCapability -Online
 ```
 ### Este desafio demonstrou a importância do domínio da linha de comando quando a interface gráfica (GUI) do Windows falha em ambientes de rede restritos.
 
@@ -119,6 +94,33 @@ Get-WindowsCapability -Online -Name "Rsat.ActiveDirectory*" | Add-WindowsCapabil
 gpupdate /force: Força a atualização imediata das políticas.
 
 gpresult /r: Gera um relatório no terminal para confirmar se a GPO está listada como "Applied".
+
+---
+
+### 📚 Principais Aprendizados
+
+### Infraestrutura de rede:
+
+* Diferença prática entre rede interna e externa no Hyper-V
+* Como DHCP e DNS se integram no ambiente de domínio
+
+### Controle de acesso:
+
+* NTFS vs permissões de compartilhamento — como funcionam juntas
+* Por que Workgroup é importante entender antes do domínio
+
+### Active Directory:
+
+* Estrutura lógica do AD: Forest > Domain > OU > Objeto
+* Como OUs permitem delegar controle e aplicar GPOs de forma granular
+
+### GPOs na prática:
+
+* Precedência de GPO: Local > Site > Domain > OU
+* Como gpupdate /force e gpresult ajudam no troubleshooting
+* Diferença entre Computer Configuration e User Configuration
+
+---
 
 
 
