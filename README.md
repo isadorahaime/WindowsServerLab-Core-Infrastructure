@@ -138,16 +138,17 @@ O ambiente recuperou a capacidade de provisionamento automático de rede, permit
 
 ![Console DHCP](docs/prints/fase1-hyper-v/04-DHCP.png)
 
+
 * ### 🔒 Implementação de Segurança (Princípio de Privilégio Mínimo)
 Durante a Fase 3 e 4, apliquei o conceito de Privilégio Mínimo (PoLP) para fortalecer a postura de segurança do domínio LAB.forest:
 
 Controle Temporal de Acessos: Configurei restrições de logon via AD DS para garantir que contas de usuários comuns (RH/Financeiro) não possuam permissão de autenticação fora do horário comercial, mitigando riscos de acessos indevidos em períodos não monitorados.
 
-![Gestão de Acesso](docs/prints/fase4-GPOs/06-Time-BasedAccess.png)
-
 Segregação de Funções: Utilizei grupos de segurança granulares em vez de permissões diretas por usuário, facilitando a auditoria e garantindo que cada colaborador acesse apenas os recursos vitais para sua função.
 
 Restrição de Configurações via GPO: Implementei políticas de restrição de interface (como bloqueio de alteração de background) para assegurar a integridade do ambiente operacional das estações de trabalho.
+
+![Gestão de Acesso](docs/prints/fase4-GPOs/06-Time-BasedAccess.png)
 
 ---
 
