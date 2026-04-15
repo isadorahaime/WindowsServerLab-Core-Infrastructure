@@ -135,6 +135,8 @@ Autorização no AD: Realizada a autorização do servidor DHCP no Active Direct
 Resultado:
 O ambiente recuperou a capacidade de provisionamento automático de rede, permitindo que estações Windows 10/11 ingressassem no domínio e acessassem recursos externos simultaneamente, mesmo após alterações na topologia física.
 
+![Console DHCP](docs/prints/fase1-hyper-v/04-DHCP.png)
+
 ---
 
 ### 📚 Principais Aprendizados
