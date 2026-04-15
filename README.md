@@ -63,6 +63,7 @@
 | **Password Reset** | Automatiza o reset de senha com expiração forçada. | [`/scripts/passwordChange`](scripts/passwordChange) |
 | **Bulk Import** | Criação de usuários em massa via arquivo CSV. | [`/scripts/CreateUsersFromCSV.ps1`](scripts/CreateUsersCSV.ps1) |
 | **Group Report** | Lista todos os membros do grupo "Domain Admins".. | [`/scripts/Get-PrivilagedUsers.ps1`](scripts/Get-PrivilagedUsers.ps1) |
+| **List Users** | Automação de Auditoria de Usuários | [`/scripts/ListUsers.ps1`](scripts/ListUsers.ps1) |
 
 ---
 
