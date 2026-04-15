@@ -152,28 +152,23 @@ Restrição de Configurações via GPO: Implementei políticas de restrição de
 
 ---
 
-### 📚 Principais Aprendizados
+### 🏁 Conclusão e Perspectivas
+A execução deste projeto híbrido de infraestrutura foi um divisor de águas na minha jornada como Analista de TI Júnior. O maior desafio não foi a instalação das ferramentas em si, mas a capacidade de manter a integridade de um domínio ativo enquanto a camada física (rede/gateway) sofria alterações.
 
-### Infraestrutura de rede:
+Este laboratório simulou com precisão o "dia a dia" de um ambiente corporativo, onde a disponibilidade dos serviços depende de uma configuração meticulosa de DNS, DHCP e Active Directory.
 
-* Diferença prática entre rede interna e externa no Hyper-V
-* Como DHCP e DNS se integram no ambiente de domínio
+* ### 🚀 Principais Aprendizados (Key Learnings) 
 
-### Controle de acesso:
+***Mentalidade de Troubleshooting:*** Aprendi que erros de console (como o lusrmgr.msc inacessível) ou falhas de comando (dhcpmgmt.msc) são, na verdade, indicadores de mudanças na arquitetura do servidor. Compreender que o Active Directory assume a gestão de contas locais foi um conceito fundamental consolidado.
 
-* NTFS vs permissões de compartilhamento — como funcionam juntas
-* Por que Workgroup é importante entender antes do domínio
+***Administração Granular via GPO:*** Evoluí do entendimento básico de políticas para a aplicação avançada de filtros. O uso de *Security Filtering e Loopback Processing* me permitiu entender como isolar máquinas específicas (como o CLIENT-1) sem impactar a produtividade do restante da organização.
 
-### Active Directory:
+***Segurança Camada a Camada:*** Através do *Princípio de Privilégio Mínimo (PoLP)*, apliquei restrições de horários de logon e controle de interface, reduzindo a superfície de ataque do domínio e garantindo que cada departamento (TI, RH, Financeiro) opere em um ambiente de *"Least Privilege"*.
 
-* Estrutura lógica do AD: Forest > Domain > OU > Objeto
-* Como OUs permitem delegar controle e aplicar GPOs de forma granular
+***Infraestrutura como Código (Powershell):*** A transição da interface gráfica para o terminal para auditoria de usuários provou que a automação é o único caminho para uma gestão de infraestrutura escalável e livre de erros manuais.
 
-### GPOs na prática:
-
-* Precedência de GPO: Local > Site > Domain > OU
-* Como gpupdate /force e gpresult ajudam no troubleshooting
-* Diferença entre Computer Configuration e User Configuration
+⏭️ Próximos Passos
+Com a base local (On-premises) sólida e documentada, o próximo passo deste projeto será a Sincronização com o Azure AD (Microsoft Entra ID), explorando cenários de identidade híbrida e segurança em nuvem.
 
 ---
 
